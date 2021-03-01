@@ -22,27 +22,6 @@ public class InvoiceService {
         this.invoiceRepository = invoiceRepository;
         this.orderRepository = orderRepository;
     }
-
-    public Invoice create(Invoice invoice, Integer orderId){
-        Invoice newInvoice = new Invoice();
-        Date date = new Date();
-        Order order = orderRepository.getOne(orderId);
-        newInvoice.setAmount(invoice.getAmount());
-        newInvoice.setOrder(order);
-        newInvoice.setIssued(date);
-        newInvoice.setDue(invoice.getDue());
-        invoiceRepository.save(newInvoice);
-//        orderService.create(orderId);
-        return newInvoice;
-    }
-
-    public Invoice getByInvoiceId(Integer invoiceId){
-        return invoiceRepository.getOne(invoiceId);
-    }
-    public Invoice getByOrderId(Integer orderId){
-        return invoiceRepository.getOne(orderId);
-    }
-
     public List<Invoice> invoiceList(){
         return invoiceRepository.findAll();
     }

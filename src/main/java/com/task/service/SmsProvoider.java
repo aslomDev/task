@@ -2,8 +2,7 @@ package com.task.service;
 
 import com.google.gson.Gson;
 import com.task.payload.ApiResponse;
-import com.task.payload.ReqTest;
-import net.minidev.json.JSONObject;
+import com.task.payload.ReqActivate;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -12,20 +11,18 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.Objects;
 
 @Service
-public class TestService {
+public class SmsProvoider {
 
-
-    public ApiResponse sms(ReqTest reqTest){
-        reqTest.getNumber().replaceAll("[^0-9]", ""); // удалить все кроме цифр
-        if (reqTest.getNumber().startsWith("998")){
-            if (reqTest.getNumber().length() == 12){
+    public ApiResponse sendToPravoider(ReqActivate activate){
+      String number = activate.getPhone().replaceAll("[^0-9]", ""); // удалить все кроме цифр
+        if (number.startsWith("998")){
+            if (number.length() == 12){
+                activate.setPhone(number);
                 try {
-                    URL targetUrl = new URL("http://localhost:8080/sms/get");
+                    URL targetUrl = new URL("https://sms-provaider.herokuapp.com/sms/get");
                     HttpURLConnection httpConnection =
                             (HttpURLConnection) Objects.requireNonNull(targetUrl).openConnection();
 
@@ -36,7 +33,7 @@ public class TestService {
 
                     OutputStream outputStream = httpConnection.getOutputStream();
                     Gson gson = new Gson();
-                    String request = gson.toJson(reqTest);
+                    String request = gson.toJson(activate);
                     outputStream.write(request.getBytes());
                     outputStream.flush();
 
@@ -64,5 +61,6 @@ public class TestService {
 
         return new ApiResponse("ERROR", false);
     }
+
 
 }

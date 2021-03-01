@@ -3,17 +3,18 @@ package com.task.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.xml.soap.Text;
-import java.awt.*;
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "customer")
-public class Customer {
+public class Customer implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +29,56 @@ public class Customer {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone", length = 50)
+    @Column(name = "phone", unique = true, length = 50)
     private String phone;
 
+    @Column(name = "password")
+    private String password;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "code_id")
+    private Code code;
+
+    @Column(name = "active")
+    private boolean active = false;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "cust_role", joinColumns = {@JoinColumn(name = "cust_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private List<Role> roles;
+
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
+    private boolean enabled = true;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.phone;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return this.accountNonExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.accountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return this.credentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
+    }
 }

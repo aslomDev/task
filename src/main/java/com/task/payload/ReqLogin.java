@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReqTest implements Serializable {
+public class ReqLogin {
 
-    private String number;
+    private String phone;
+
+    private String password;
 
 }

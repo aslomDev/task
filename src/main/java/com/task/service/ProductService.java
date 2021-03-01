@@ -52,11 +52,6 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> productListByCategoryId(Integer categoryId){
-//        List<Product> product = productRepository.findByCategories(categoryId);
-//        return product;
-   return null;
-    }
 
     public ApiResponse getProductDetails(Integer productId){
         Optional<Detail> detail = detailRepository.findById(productId);

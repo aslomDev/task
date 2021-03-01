@@ -27,9 +27,4 @@ public class ResponseResult {
         this.result = result;
     }
 
-    public ResponseResult(String message, Object object, boolean result) {
-        this.message = message;
-        this.object = object;
-        this.result = result;
-    }
 }

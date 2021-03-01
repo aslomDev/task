@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
@@ -29,6 +30,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(value = "select c.country as country, count(o.cust_id) as totalOrders from customer c inner join orders o on o.cust_id = c.id where o.date > '2016-01-01' and o.date < '2016-12-31'group by country", nativeQuery = true)
     List<Number_of_products_in_year_projection> number_of_products_in_year();
 
+    Optional<Customer> findByPhone(String phone);
+
+    Customer getByPhone(String phone);
 
 
 }

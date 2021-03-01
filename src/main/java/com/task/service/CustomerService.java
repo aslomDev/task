@@ -37,22 +37,6 @@ public class CustomerService {
     }
 
 
-    public List<Customer> getNoOrder(){
-
-//        List<Customer> customers = customerRepository.findCust();
-
-        return null;
-
-//        return customers;
-
-
-    }
-
-    public void delete(Integer id){
-        Customer customer = customerRepository.findById(id).get();
-
-        customerRepository.delete(customer);
-    }
 
 
 }

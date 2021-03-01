@@ -30,20 +30,13 @@ public class CustomerController {
 
     @GetMapping("/customer/list")
     public List<Customer> customerList(){
-        return customerService.getNoOrder();
+        return customerService.list();
     }
 
     @GetMapping("/customer")
     public Customer getOne(@RequestParam Integer customerId){
         return customerService.getOne(customerId);
     }
-
-//    @DeleteMapping("/customer/delete")
-//    public HttpEntity<?> delete(@RequestParam Integer id){
-//         customerService.delete(id);
-//
-//         return ResponseEntity.ok("uchirildi");
-//    }
 
 
 
