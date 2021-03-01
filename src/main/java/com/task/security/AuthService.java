@@ -86,9 +86,7 @@ public class AuthService implements UserDetailsService {
                         return new ApiResponse("SUCCESS",true);
                     }
                 }
-                return new ApiResponse("FAILED:  неверный код" +
-                        "\n" +
-                        "«Неполадки подключения или неверный код MMI»: как", false);
+                return new ApiResponse("FAILED:  неверный код", false);
             }
             return new ApiResponse("FAILED: не правильно указан номер или парол", false);
     }
