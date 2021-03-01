@@ -95,7 +95,10 @@ public class AuthService implements UserDetailsService {
     public ApiResponse login(ReqLogin request){
         Optional<Customer> customer = customerRepository.findByPhone(request.getPhone());
         if (customer.isPresent() && passwordEncoder.matches(request.getPassword(), customer.get().getPassword())){
-            return new ApiResponse("SUCCESS", customer, true);
+            if (customer.get().isActive()) {
+                return new ApiResponse("SUCCESS", customer, true);
+            }
+            return new ApiResponse("FAILED: узер не активирован!", false);
         }
         return new ApiResponse("FAILED: не правильно указан номер или парол!", false);
     }

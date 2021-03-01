@@ -39,17 +39,7 @@ public class SmsProvoider {
                     outputStream.flush();
 
                     if (httpConnection.getResponseCode() != 200) {
-                        if (httpConnection.getResponseCode() == 400) {
-                            InputStreamReader inputStreamReader = new InputStreamReader((httpConnection.getErrorStream()));
-                            BufferedReader responseBuffer = new BufferedReader(inputStreamReader);
-                            String output;
-                            while ((output = responseBuffer.readLine()) != null) {
-
-                                //ERROR RESPONSE CODE = 202  return true;
-                                System.out.println(output);
                                 return new ApiResponse("Nomer notug'ri!", false);
-                            }
-                        }
                     }
                     httpConnection.disconnect();
                     return new ApiResponse("SUCCESS", true);
