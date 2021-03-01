@@ -5,6 +5,7 @@ import com.task.payload.ApiResponse;
 import com.task.payload.ResponseResult;
 import com.task.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class CustomerService {
     }
 
 
+    @Transactional
     public ApiResponse makeCustomer(Customer customer){
         Customer newCustom = new Customer();
         newCustom.setName(customer.getName());

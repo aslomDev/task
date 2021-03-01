@@ -10,6 +10,7 @@ import com.task.repository.InvoiceRepository;
 import com.task.repository.PaymentRepository;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
 import java.math.BigDecimal;
@@ -27,6 +28,7 @@ public class PaymentService {
     }
 
 
+    @Transactional
     public ApiResponse makePayment(ReqPayment reqPayment){
         Payment newPayment = new Payment();
         Optional<Invoice> invoice = invoiceRepository.findById(reqPayment.getIvoice_id());
@@ -45,6 +47,7 @@ public class PaymentService {
         return new ApiResponse("SUCCESS", newPayment, true);
     }
 
+    @Transactional
     public ApiResponse getPaymentDetails(Integer paymentId){
         Optional<Payment> payment = paymentRepository.findById(paymentId);
 

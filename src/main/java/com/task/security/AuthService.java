@@ -71,6 +71,7 @@ public class AuthService implements UserDetailsService {
        return new ApiResponse("ERROR: неправильный номер телефона!", false);
     }
 
+    @Transactional
     public ApiResponse activate(ReqActivate activate){
         Optional<Customer> customer = customerRepository.findByPhone(activate.getPhone());
             if (customer.isPresent()){
@@ -92,6 +93,7 @@ public class AuthService implements UserDetailsService {
             return new ApiResponse("FAILED: не правильно указан номер или парол", false);
     }
 
+    @Transactional
     public ApiResponse login(ReqLogin request){
         Optional<Customer> customer = customerRepository.findByPhone(request.getPhone());
         if (customer.isPresent() && passwordEncoder.matches(request.getPassword(), customer.get().getPassword())){
@@ -100,6 +102,7 @@ public class AuthService implements UserDetailsService {
         return new ApiResponse("FAILED: не правильно указан номер или парол!", false);
     }
 
+    @Transactional
     public Code code(String code){
         Code secureCode = new Code();
         secureCode.setCode(code);

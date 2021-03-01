@@ -16,6 +16,7 @@ import java.util.Objects;
 @Service
 public class SmsProvoider {
 
+
     public ApiResponse sendToPravoider(ReqActivate activate){
       String number = activate.getPhone().replaceAll("[^0-9]", ""); // удалить все кроме цифр
         if (number.startsWith("998")){

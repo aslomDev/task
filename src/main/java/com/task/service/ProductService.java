@@ -11,6 +11,7 @@ import com.task.repository.DetailRepository;
 import com.task.repository.ProductRepository;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,7 @@ public class ProductService {
     }
 
 
+    @Transactional
     public ApiResponse makeProduct(Product product, Integer id){
         Product newProduct = new Product();
         Optional<Category> category = categoryRepository.findById(id);
@@ -48,6 +50,7 @@ public class ProductService {
 
     }
 
+    @Transactional
     public List<Product> productList(){
         return productRepository.findAll();
     }

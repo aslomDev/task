@@ -29,6 +29,7 @@ public class OrderService {
     }
 
 
+    @Transactional
     public ApiResult order(Integer customerId){
         ApiResult result = new ApiResult();
         Date date = new Date();
@@ -47,6 +48,7 @@ public class OrderService {
         return result;
     }
 
+    @Transactional
     public ApiResult detail(Integer orderId, Integer productId, Short quantity){
         ApiResult result = new ApiResult();
         Detail detail = new Detail();

@@ -10,6 +10,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,7 @@ public class CategoryService {
 
 
 
+    @Transactional
     public ApiResponse makeCategory(Category category){
         Category newCategory = new Category();
         newCategory.setName(category.getName());
@@ -40,6 +42,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    @Transactional
     public ApiResponse getProductDetails(Integer productId){
         Optional<Product> product = productRepository.findById(productId);
         if (product.isPresent()) {
