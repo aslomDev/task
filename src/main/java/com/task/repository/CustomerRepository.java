@@ -23,11 +23,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 //    @Query(value = "select * from customers c right join orders o on o.customers_id != c.id where o.date >= :startDate and o.date <= :endDate", nativeQuery = true)
 //    List<Customer> customers_without_orders(@Param("startDate") Calendar startDate, @Param("endDate") Calendar endDate);
 
-    @Query(value = "select * from customer where not exists (select from orders where  orders.date > '2016-01-01 00:00:00' and orders.date < '2016-12-31 23:59:59' and orders.cust_id = customer.id)", nativeQuery = true)
+    @Query(value = "select * from customer c  right join order o on o.cust_id = c.id where not exists (select from order where order.date > '2016-01-01 00:00:00' and order.date < '2016-12-31 23:59:59' and order.cust_id = c.id and order.cust_id = c.id)", nativeQuery = true)
     List<Customer> customers_without_orders();
 
 
-    @Query(value = "select c.country as country, count(o.cust_id) as totalOrders from customer c inner join orders o on o.cust_id = c.id where o.date > '2016-01-01' and o.date < '2016-12-31'group by country", nativeQuery = true)
+    @Query(value = "select c.country as country, count(o.cust_id) as totalOrders from customer c inner join order o on o.cust_id = c.id where o.date > '2016-01-01' and o.date < '2016-12-31'group by country", nativeQuery = true)
     List<Number_of_products_in_year_projection> number_of_products_in_year();
 
     Optional<Customer> findByPhone(String phone);
