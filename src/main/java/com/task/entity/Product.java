@@ -16,20 +16,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name", length = 10)
+    @Column(name = "name")
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column(name = "description", length = 20)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "photo", length = 1024)
+    @Column(name = "photo")
     private String photo;
 
 

@@ -16,16 +16,16 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name", length = 14)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "country", length = 13)
+    @Column(name = "country")
     private String country;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phone", unique = true, length = 50)
+    @Column(name = "phone")
     private String phone;
 
 }
