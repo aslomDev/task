@@ -1,6 +1,7 @@
 package com.task.security;
 
 import com.task.entity.Customer;
+import com.task.entity.Users;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public class JwtTokenProvider {
     private int jwtExpirationInMs;
 
     public String generateToken(Authentication authentication) {
-        Customer userPrincipal = (Customer) authentication.getPrincipal();
+        Users userPrincipal = (Users) authentication.getPrincipal();
 
         Date expiryDate = new Date(new Date().getTime() + jwtExpirationInMs);
 
