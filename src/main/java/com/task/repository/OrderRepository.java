@@ -5,11 +5,8 @@ import com.task.projection.Customers_last_orders_projection;
 import com.task.projection.Order_without_invoice_projection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Repository

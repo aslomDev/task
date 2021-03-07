@@ -1,8 +1,8 @@
 package com.task.repository;
 
 import com.task.entity.Detail;
-import com.task.projection.DetailForm;
 import com.task.projection.Bulk_products_projection;
+import com.task.projection.DetailForm;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
