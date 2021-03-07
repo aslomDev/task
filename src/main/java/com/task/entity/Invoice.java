@@ -24,7 +24,7 @@ public class Invoice {
     @JoinColumn(name = "ord_id")
     private Order order;
 
-    @Column(name = "amount")
+    @Column(name = "amount", length = 15)
     private BigDecimal amount;
 
     @Column(name = "issued")

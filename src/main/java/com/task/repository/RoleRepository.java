@@ -1,10 +1,9 @@
 package com.task.repository;
 
-import com.task.entity.Payment;
+import com.task.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface PaymentRepository extends JpaRepository<Payment, Integer> {}
+public interface RoleRepository extends JpaRepository<Role, Integer> {
+}
